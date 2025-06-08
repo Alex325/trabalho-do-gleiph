@@ -8,14 +8,14 @@ public class Jogo {
     private Maquina maquinaEstados;
 
     public Jogo() {
-        this.running = false;
-        this.maquinaEstados = new Maquina();
+        this.running = true;
+        this.maquinaEstados = Maquina.maquina();
     }
 
     public void run() {
-
         while (running) {
             maquinaEstados.run();
+            running = !maquinaEstados.jogoAcabou();
         }
 
     }
