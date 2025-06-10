@@ -1,20 +1,23 @@
 package com.alex.dcc025.engine;
 
-import com.alex.dcc025.jogo.Jogador;
 import com.alex.dcc025.jogo.Tabuleiro;
+import com.alex.dcc025.jogo.jogador.Jogador;
 import com.alex.dcc025.util.Teclado;
 
 public class EstadoJogo implements Estado {
 
     private final Tabuleiro tabuleiro;
 
-    private int turno = 0;
+    private int turno;
     private final Jogador[] jogadores;
     private Jogador proximoJogador;
 
     public EstadoJogo(Jogador[] jogadores) {
+        turno = 0;
         tabuleiro = new Tabuleiro();
         this.jogadores = jogadores;
+        
+        tabuleiro.atualizarTabuleiro(this.jogadores);
         proximoJogador = jogadores[turno];
     }
 
@@ -30,9 +33,9 @@ public class EstadoJogo implements Estado {
     @Override
     public void tick() {
         proximoJogador.jogar();
-        tabuleiro.atualizarTabuleiro();
+        tabuleiro.atualizarTabuleiro(jogadores);
         avancarTurno();
-        Teclado.ler();
+        Teclado.esperarInput();
     }
 
     private void avancarTurno() {

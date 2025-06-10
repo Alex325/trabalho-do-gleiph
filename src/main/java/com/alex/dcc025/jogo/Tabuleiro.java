@@ -1,13 +1,14 @@
 package com.alex.dcc025.jogo;
 
+import com.alex.dcc025.jogo.jogador.Jogador;
+import com.alex.dcc025.jogo.personagem.Personagem;
+
 public class Tabuleiro {
     private char[] tabuleiro = new char[10*10];
 
 
     public Tabuleiro() {
-        for (int i = 0; i < 100; i++) {
-            tabuleiro[i] = '.';
-        }
+        limparTabuleiro();
     }
 
     public void printTabuleiro() {
@@ -20,21 +21,34 @@ public class Tabuleiro {
         }
     }
 
-    public void atualizarTabuleiro() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                /*if (jogador.getX() == i && jogador.getY() == j) {
-                    tabuleiro[10*i + j] = jogador.getAparencia();
-                }
-                else if (inimigo.getX() == i && inimigo.getY() == j) {
-                    tabuleiro[10*i + j] = inimigo.getAparencia();
-                }
-                else {*/
-                    tabuleiro[10*i + j] = '.';
-                //}
-            }
+    public void atualizarTabuleiro(Jogador[] jogadores) {
+        limparTabuleiro();
+        setPosicao(jogadores[0].getPersonagem().getAparencia(), jogadores[0].getPersonagem().getX(), jogadores[0].getPersonagem().getY());
+        setPosicao(jogadores[1].getPersonagem().getAparencia(), jogadores[1].getPersonagem().getX(), jogadores[1].getPersonagem().getY());
+    }
 
-            System.out.print("\n");
+    public boolean posicaoLivre(int x, int y) {
+        return getPosicao(x, y) == '.';
+    }
+
+    public int distancia(Personagem p1, Personagem p2) {
+        return Math.max(Math.abs(p1.getY() - p2.getY()), Math.abs(p1.getX() - p2.getX()));
+    }
+
+    private void limparTabuleiro() {
+        for (int y = 0; y < 10; y++) {
+            for (int x = 0; x < 10; x++) {          
+                setPosicao('.', x, y);
+            }
         }
     }
+
+    private char getPosicao(int x, int y) {
+        return tabuleiro[10*y + x];
+    }
+
+    private void setPosicao(char valor, int x, int y) {
+        tabuleiro[10*y + x] = valor;
+    }
+
 }

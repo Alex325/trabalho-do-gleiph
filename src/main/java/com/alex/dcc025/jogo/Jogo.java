@@ -15,7 +15,6 @@ public class Jogo {
 
     public void run() {
         while (running) {
-            Tela.limparTela();
             maquinaEstados.run();
             running = !maquinaEstados.jogoAcabou();
         }

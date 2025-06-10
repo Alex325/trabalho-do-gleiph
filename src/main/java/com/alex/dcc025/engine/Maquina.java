@@ -1,5 +1,7 @@
 package com.alex.dcc025.engine;
 
+import com.alex.dcc025.util.Tela;
+
 public class Maquina {
 
     private static Maquina maquina;
@@ -10,11 +12,11 @@ public class Maquina {
     public static Maquina maquina() {
         if (maquina == null)
             maquina = new Maquina();
-        
         return maquina;
     }
      
     public void run() {
+        Tela.limparTela();
         estadoAtual.run();
     }
 
@@ -22,14 +24,14 @@ public class Maquina {
         return fimDeJogo;
     }
     
-    //nível de pacote, acessível para todos os estados
-    void transition(Estado novoEstado) {
+    
+    public void transition(Estado novoEstado) {
         estadoAtual = novoEstado;
         run();
     }
     
-    //nível de pacote, acessível para todos os estados
-    void setFimDeJogo(boolean acabou) {
+    
+    public void setFimDeJogo(boolean acabou) {
         fimDeJogo = acabou;
     }
     
