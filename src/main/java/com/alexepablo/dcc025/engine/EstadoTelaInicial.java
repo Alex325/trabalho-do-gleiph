@@ -1,6 +1,5 @@
 package com.alexepablo.dcc025.engine;
 
-<<<<<<< HEAD:src/main/java/com/alexepablo/dcc025/engine/EstadoTelaInicial.java
 import com.alexepablo.dcc025.jogo.jogador.Jogador;
 import com.alexepablo.dcc025.jogo.jogador.JogadorHumano;
 import com.alexepablo.dcc025.jogo.jogador.JogadorIA;
@@ -10,17 +9,6 @@ import com.alexepablo.dcc025.jogo.personagem.Mago;
 import com.alexepablo.dcc025.util.Aleatorio;
 import com.alexepablo.dcc025.util.Teclado;
 import com.alexepablo.dcc025.util.Tela;
-=======
-import com.alex.dcc025.jogo.jogador.Jogador;
-import com.alex.dcc025.jogo.jogador.JogadorHumano;
-import com.alex.dcc025.jogo.jogador.JogadorIA;
-import com.alex.dcc025.jogo.personagem.Arqueiro;
-import com.alex.dcc025.jogo.personagem.Guerreiro;
-import com.alex.dcc025.jogo.personagem.Mago;
-import com.alex.dcc025.util.Aleatorio;
-import com.alex.dcc025.util.Teclado;
-import com.alex.dcc025.util.Tela;
->>>>>>> 1c585f6 (conflitos resolvidos, integrar mecânicas):src/main/java/com/alex/dcc025/engine/EstadoTelaInicial.java
 
 public class EstadoTelaInicial implements Estado {
 
