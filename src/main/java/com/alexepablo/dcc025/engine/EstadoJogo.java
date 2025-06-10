@@ -1,8 +1,8 @@
-package com.alex.dcc025.engine;
+package com.alexepablo.dcc025.engine;
 
-import com.alex.dcc025.jogo.Tabuleiro;
-import com.alex.dcc025.jogo.jogador.Jogador;
-import com.alex.dcc025.util.Teclado;
+import com.alexepablo.dcc025.jogo.Tabuleiro;
+import com.alexepablo.dcc025.jogo.jogador.Jogador;
+import com.alexepablo.dcc025.util.Teclado;
 
 public class EstadoJogo implements Estado {
 

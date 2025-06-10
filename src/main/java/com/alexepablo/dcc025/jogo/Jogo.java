@@ -1,7 +1,6 @@
-package com.alex.dcc025.jogo;
+package com.alexepablo.dcc025.jogo;
 
-import com.alex.dcc025.engine.Maquina;
-import com.alex.dcc025.util.Tela;
+import com.alexepablo.dcc025.engine.Maquina;
 
 public class Jogo {
 

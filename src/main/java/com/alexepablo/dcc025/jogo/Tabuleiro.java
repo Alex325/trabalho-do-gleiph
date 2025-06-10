@@ -1,7 +1,7 @@
-package com.alex.dcc025.jogo;
+package com.alexepablo.dcc025.jogo;
 
-import com.alex.dcc025.jogo.jogador.Jogador;
-import com.alex.dcc025.jogo.personagem.Personagem;
+import com.alexepablo.dcc025.jogo.jogador.Jogador;
+import com.alexepablo.dcc025.jogo.personagem.Personagem;
 
 public class Tabuleiro {
     private char[] tabuleiro = new char[10*10];

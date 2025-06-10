@@ -1,4 +1,4 @@
-package com.alex.dcc025.jogo.personagem;
+package com.alexepablo.dcc025.jogo.personagem;
 
 public class Guerreiro extends Personagem {
 

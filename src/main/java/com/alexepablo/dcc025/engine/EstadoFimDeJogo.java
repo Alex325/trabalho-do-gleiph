@@ -1,6 +1,6 @@
-package com.alex.dcc025.engine;
+package com.alexepablo.dcc025.engine;
 
-import com.alex.dcc025.util.Teclado;
+import com.alexepablo.dcc025.util.Teclado;
 
 public class EstadoFimDeJogo implements Estado {
 

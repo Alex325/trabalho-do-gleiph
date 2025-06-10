@@ -1,6 +1,6 @@
-package com.alex.dcc025.trabalho1dcc025;
+package com.alexepablo.dcc025.trabalho1dcc025;
 
-import com.alex.dcc025.jogo.Jogo;
+import com.alexepablo.dcc025.jogo.Jogo;
 
 public class Trabalho1DCC025 {
     public static void main(String[] args) {

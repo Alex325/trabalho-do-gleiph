@@ -1,6 +1,6 @@
-package com.alex.dcc025.jogo.jogador;
+package com.alexepablo.dcc025.jogo.jogador;
 
-import com.alex.dcc025.jogo.personagem.Personagem;
+import com.alexepablo.dcc025.jogo.personagem.Personagem;
 
 public class Jogador {
 

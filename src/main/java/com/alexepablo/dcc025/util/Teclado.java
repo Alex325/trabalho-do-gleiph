@@ -1,6 +1,10 @@
-package com.alex.dcc025.util;
+package com.alexepablo.dcc025.util;
 
 
+<<<<<<< HEAD:src/main/java/com/alexepablo/dcc025/util/Teclado.java
+=======
+
+>>>>>>> 1c585f6 (conflitos resolvidos, integrar mecânicas):src/main/java/com/alex/dcc025/util/Teclado.java
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
