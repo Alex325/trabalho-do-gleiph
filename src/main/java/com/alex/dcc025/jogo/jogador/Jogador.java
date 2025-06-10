@@ -17,10 +17,10 @@ public class Jogador {
     }
 
     public String nomeCompleto() {
-        return personagem.getClasse() + " " + nome;
+        return this.personagem.getClasse() + " " + nome;
     }
     
     public Personagem getPersonagem() {
-        return personagem;
+        return this.personagem;
     }
 }

@@ -27,8 +27,22 @@ public class Tabuleiro {
         setPosicao(jogadores[1].getPersonagem().getAparencia(), jogadores[1].getPersonagem().getX(), jogadores[1].getPersonagem().getY());
     }
 
+    public boolean validarAtaque(Personagem atacando, Personagem parado)
+    {
+        return atacando.getAlcance() >= distancia(atacando, parado);
+         
+    }
+
+    public boolean movimentoValido(int x, int y) {
+        return posicaoLivre(x, y) && dentroDoTabuleiro(x, y);
+    }
+
     public boolean posicaoLivre(int x, int y) {
         return getPosicao(x, y) == '.';
+    }
+
+    public boolean dentroDoTabuleiro(int x, int y) {
+        return x >= 0 && x <= 9 && y >= 0 && y <= 9;
     }
 
     public int distancia(Personagem p1, Personagem p2) {

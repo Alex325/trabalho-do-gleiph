@@ -1,10 +1,11 @@
 package com.alex.dcc025.engine;
 
-import java.util.Arrays;
-import java.util.Random;
-
-import com.alex.dcc025.jogo.jogador.*;
-import com.alex.dcc025.jogo.personagem.*;
+import com.alex.dcc025.jogo.jogador.Jogador;
+import com.alex.dcc025.jogo.jogador.JogadorHumano;
+import com.alex.dcc025.jogo.jogador.JogadorIA;
+import com.alex.dcc025.jogo.personagem.Arqueiro;
+import com.alex.dcc025.jogo.personagem.Guerreiro;
+import com.alex.dcc025.jogo.personagem.Mago;
 import com.alex.dcc025.util.Aleatorio;
 import com.alex.dcc025.util.Teclado;
 import com.alex.dcc025.util.Tela;
@@ -26,14 +27,7 @@ public class EstadoTelaInicial implements Estado {
 
     @Override
     public void tick() {
-        String modo;
-        
-        do {
-            Tela.limparTela();
-            System.out.println("Escolha um modo de jogo:");
-            System.out.println("Contra humano (1) | Contra bot (2)");
-            modo = Teclado.lerModo();
-        } while (modo.compareTo("1") != 0 && modo.compareTo("2") != 0);
+        String modo = Teclado.lerModo();
 
         Jogador[] jogadores = new Jogador[2];
 
