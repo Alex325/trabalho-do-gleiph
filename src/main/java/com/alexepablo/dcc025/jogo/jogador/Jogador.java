@@ -15,12 +15,8 @@ public class Jogador {
         this.tipo = tipo;
     }
 
-    public void jogar(Jogador outro) {
-        // intencionalmente vazio
-    }
-
-    public void jogar(Jogador outro, int turno) {
-        // intencionalmente vazio
+    public boolean jogar(Jogador outro, int turno) {
+        return false;
     }
     
     public String nomeCompleto() {

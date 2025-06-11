@@ -79,15 +79,15 @@ public class Teclado {
     }
 
     public static String lerAcao() {
-        List<String> acoesValidas = Arrays.asList("M", "A", "D", "E");
+        List<String> acoesValidas = Arrays.asList("M", "A", "D", "E", "S");
 
-        System.out.println("Escolhe a tua ação (Mover (M) | Atacar (A) | Defender (D) | Especial (E))");
+        System.out.println("Escolhe a tua ação (Mover (M) | Atacar (A) | Defender (D) | Especial (E) | Sair (S))");
 
         String acao = ler().toUpperCase();
 
         while(!acoesValidas.contains(acao)) {
             limparLinha(2); 
-            System.out.println("Ação inválida (M | A | D | E)");
+            System.out.println("Ação inválida (M | A | D | E | S)");
             acao = ler().toUpperCase();
         }
 

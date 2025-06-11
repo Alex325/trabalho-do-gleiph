@@ -9,8 +9,9 @@ public class JogadorIA extends Jogador {
     }
  
     @Override
-    public void jogar(Jogador outro) {
+    public boolean jogar(Jogador outro, int turno) {
         System.out.println("jogando... " + this.getClass().getName());
+        return false;
     }
     
 }

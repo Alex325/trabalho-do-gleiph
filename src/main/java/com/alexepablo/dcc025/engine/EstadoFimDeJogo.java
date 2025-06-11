@@ -6,8 +6,12 @@ public class EstadoFimDeJogo implements Estado {
 
     private final String vencedor;
 
-    public EstadoFimDeJogo(String vencedor) {
+    private final String forfeit;
+
+    public EstadoFimDeJogo(String vencedor, String forfeit) {
         this.vencedor = vencedor;
+
+        this.forfeit = forfeit;
     }
 
     @Override
@@ -19,6 +23,11 @@ public class EstadoFimDeJogo implements Estado {
     @Override
     public void render() {
         String mensagemFimDeJogo;
+
+        if (!forfeit.isEmpty()) {
+            System.out.println("Jogador " + forfeit + " desistiu.");            
+        }
+
         if (vencedor.compareTo("Inimigo") == 0) {
             mensagemFimDeJogo = String.format("Que pena. %s venceu.", vencedor);
         }

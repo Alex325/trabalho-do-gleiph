@@ -9,14 +9,17 @@ public class EstadoJogo implements Estado {
 
     private final Tabuleiro tabuleiro;
 
+    private boolean forfeit;
+
     private int turno;
     private final Jogador[] jogadores;
     private Jogador jogandoAgora;
     private Jogador proximoJogador;
 
     public EstadoJogo(Jogador[] jogadores) {
-        turno = 0;
-        tabuleiro = Tabuleiro.tabuleiro();
+        this.forfeit = false;
+        this.turno = 0;
+        this.tabuleiro = Tabuleiro.tabuleiro();
         this.jogadores = jogadores;
         
         prepararPrimeiroTurno();
@@ -45,7 +48,7 @@ public class EstadoJogo implements Estado {
 
     @Override
     public void tick() {
-        jogandoAgora.jogar(proximoJogador);
+        this.forfeit = jogandoAgora.jogar(proximoJogador, turno);
         tabuleiro.atualizarTabuleiro(jogadores);
 
         checkFimDeJogo();
@@ -53,7 +56,16 @@ public class EstadoJogo implements Estado {
     }
 
     private void checkFimDeJogo() {
-        String vencedor = encerrarJogo(jogadores);
+
+        String desistente = "", vencedor = "";
+
+        if (forfeit) {
+            desistente = jogadores[turno % 2].nomeCompleto();
+        } else {
+            vencedor = encerrarJogo(jogadores);
+        }
+
+        if (!desistente.isEmpty()) Maquina.maquina().transition(new EstadoFimDeJogo(vencedor, desistente));
 
         if (vencedor.isEmpty()) return;
 
@@ -67,7 +79,7 @@ public class EstadoJogo implements Estado {
 
         Teclado.esperarInput();
 
-        Maquina.maquina().transition(new EstadoFimDeJogo(vencedor));
+        Maquina.maquina().transition(new EstadoFimDeJogo(vencedor, desistente));
     }
 
     private void avancarTurno() {

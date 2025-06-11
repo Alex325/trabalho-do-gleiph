@@ -11,34 +11,43 @@ public class JogadorHumano extends Jogador {
     }
 
     @Override
-    public void jogar(Jogador outro) {
+    public boolean jogar(Jogador outro, int turno) {
         String acao = Teclado.lerAcao();
-        decidirAcao(acao, outro);
+        return decidirAcao(acao, outro);
     }
 
-    private void decidirAcao(final String acao, Jogador outro) {
+    private boolean decidirAcao(final String acao, Jogador outro) {
+
+        boolean forfeit = false;
+
         switch (acao) {
-            case "M" -> this.mover();
+            case "M" -> { this.mover(); }
             case "A" -> {
-                if (this.atacar(outro))
-                    return;
+                if (this.atacar(outro)) break;
 
                 Teclado.limparLinha(1);
                 System.out.println("Ataque inválido. Perdeste a vez.");
                 Teclado.esperarInput();
             }
-            case "D" -> this.defender();
+            case "D" -> { this.defender(); }
             case "E" -> {
-                if (this.habilidadeEspecial())
-                    return;
+                if (this.habilidadeEspecial()) break;
 
                 Teclado.limparLinha(1);
                 System.out.println("Habilidade indisponível. Tenta outra ação.");
                 Teclado.esperarInput();
                 Teclado.limparLinha(3);
-                jogar(outro);
+                jogar(outro, 0);
+
             }
+            case "S" -> { forfeit = this.sair(); }
         }
+
+        return forfeit;
+    }
+
+    private boolean sair() {
+        return true;
     }
 
     private void mover() {
