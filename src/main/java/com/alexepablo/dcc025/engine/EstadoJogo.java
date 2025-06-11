@@ -48,7 +48,7 @@ public class EstadoJogo implements Estado {
         }
         if(jogadores[1].getNome().equalsIgnoreCase("GLEIPH"))
         {
-            Maquina.maquina().transition(new EstadoFimDeJogo("jogador 2", "jogador 1"));
+            Maquina.maquina().transition(new EstadoFimDeJogo("2", " 1"));
         }
             
         tabuleiro.printTabuleiro();
