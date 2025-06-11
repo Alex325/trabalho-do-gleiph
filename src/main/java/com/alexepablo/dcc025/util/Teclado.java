@@ -68,8 +68,13 @@ public class Teclado {
 
     public static String lerNome() {
         Tela.limparTela();
-        System.out.println("Digita o nome do teu personagem");
+        System.out.println("Digita o nome do teu personagem.");
         String nome = ler();
+        while (nome.trim().isEmpty()) {
+            Tela.limparTela();
+            System.out.println("Nome não pode ser vazio.");
+            nome = ler();
+        }
         return nome;
     }
 
@@ -89,14 +94,30 @@ public class Teclado {
         return acao;
 
     }
-    public static String lerDirecao() {
+    public static String lerDirecao(boolean movimentoValido) {
         List<String> direcoesValidas = Arrays.asList("W", "A", "S", "D");
+
+        String direcao;
+
+        if (!movimentoValido) {
+            limparLinha(3);
+            System.out.println("Não batas (W | A | S | D)");
+            direcao = ler().toUpperCase();
+
+            while(!direcoesValidas.contains(direcao)) {
+                limparLinha(2);
+                System.out.println("Direção inválida (W | A | S | D)");
+                direcao = ler().toUpperCase();
+            }
+            
+            return direcao;
+        }
 
         limparLinha(2);
 
         System.out.println("Escolhe a direção (Cima (W) | Baixo (S) | Esquerda (A) | Direita (D))");
-
-        String direcao = ler().toUpperCase();
+        
+        direcao = ler().toUpperCase();
 
         while(!direcoesValidas.contains(direcao)) {
             limparLinha(2);

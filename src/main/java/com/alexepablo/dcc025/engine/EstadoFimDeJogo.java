@@ -18,7 +18,14 @@ public class EstadoFimDeJogo implements Estado {
 
     @Override
     public void render() {
-        System.out.println("Parabéns! Você " + (vencedor.isEmpty() ? "venceu" : "perdeu") + ".");
+        String mensagemFimDeJogo;
+        if (vencedor.compareTo("Inimigo") == 0) {
+            mensagemFimDeJogo = String.format("Que pena. %s venceu.", vencedor);
+        }
+        else {
+            mensagemFimDeJogo = String.format("Parabéns. Jogador %s venceu.", vencedor);
+        }
+        System.out.println(mensagemFimDeJogo);
     }
 
     @Override

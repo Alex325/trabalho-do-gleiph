@@ -19,6 +19,9 @@ public class Jogador {
         // intencionalmente vazio
     }
 
+    public void jogar(Jogador outro, int turno) {
+        // intencionalmente vazio
+    }
     
     public String nomeCompleto() {
         return this.personagem.getClasse() + " " + nome;

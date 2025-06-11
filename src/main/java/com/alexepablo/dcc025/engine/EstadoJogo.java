@@ -3,6 +3,7 @@ package com.alexepablo.dcc025.engine;
 import com.alexepablo.dcc025.jogo.Tabuleiro;
 import com.alexepablo.dcc025.jogo.jogador.Jogador;
 import com.alexepablo.dcc025.util.Teclado;
+import com.alexepablo.dcc025.util.Tela;
 
 public class EstadoJogo implements Estado {
 
@@ -35,7 +36,6 @@ public class EstadoJogo implements Estado {
     public void run() {
         render();
         tick();
-        Teclado.esperarInput();
     }
     @Override
     public void render() {
@@ -46,15 +46,28 @@ public class EstadoJogo implements Estado {
     @Override
     public void tick() {
         jogandoAgora.jogar(proximoJogador);
+        tabuleiro.atualizarTabuleiro(jogadores);
 
+        checkFimDeJogo();
+        avancarTurno();
+    }
+
+    private void checkFimDeJogo() {
         String vencedor = encerrarJogo(jogadores);
 
-        if (!vencedor.isEmpty()) {
-            Maquina.maquina().transition(new EstadoFimDeJogo(vencedor));
-        }
+        if (vencedor.isEmpty()) return;
 
-        tabuleiro.atualizarTabuleiro(jogadores);
-        avancarTurno();
+        Tela.limparTela();
+
+        Tabuleiro.tabuleiro().printTabuleiro();
+
+        System.out.println("Fim de Jogo. O vencedor é o Jogador " + vencedor);
+
+        System.out.println("Pressione para continuar...");
+
+        Teclado.esperarInput();
+
+        Maquina.maquina().transition(new EstadoFimDeJogo(vencedor));
     }
 
     private void avancarTurno() {
@@ -64,8 +77,8 @@ public class EstadoJogo implements Estado {
     }
 
     private String encerrarJogo(Jogador[] jogadores) {
-        for (Jogador jogador : jogadores) {
-            if (jogador.getPersonagem().getVida() == 0) return jogador.getTipo();
+        for (int i = 0; i < 2; i++) {
+            if (jogadores[i].getPersonagem().getVida() == 0) return jogadores[(i+1) % 2].getTipo();
         }
         return "";
     }

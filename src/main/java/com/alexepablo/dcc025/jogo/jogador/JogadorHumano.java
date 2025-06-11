@@ -20,18 +20,17 @@ public class JogadorHumano extends Jogador {
         switch (acao) {
             case "M" -> this.mover();
             case "A" -> {
-                if (this.atacar(outro)) return;
+                if (this.atacar(outro))
+                    return;
 
                 Teclado.limparLinha(1);
-                System.out.println("Ataque inválido. Tenta outra ação.");
+                System.out.println("Ataque inválido. Perdeste a vez.");
                 Teclado.esperarInput();
-                Teclado.limparLinha(3);
-                jogar(outro);
-
             }
             case "D" -> this.defender();
-            case "E" -> { 
-                if (this.habilidadeEspecial()) return;
+            case "E" -> {
+                if (this.habilidadeEspecial())
+                    return;
 
                 Teclado.limparLinha(1);
                 System.out.println("Habilidade indisponível. Tenta outra ação.");
@@ -44,21 +43,30 @@ public class JogadorHumano extends Jogador {
 
     private void mover() {
         
-        int deltaX = 0, deltaY = 0;
+        int deltaX, deltaY;
         
-        while(!Tabuleiro.tabuleiro().movimentoValido(this.personagem.getX() + deltaX, this.personagem.getY() + deltaY)) {        
+        boolean movimentoValido = true;
+
+        do {
             deltaX = deltaY = 0;
             
-            String direcao = Teclado.lerDirecao();
-
+            String direcao = Teclado.lerDirecao(movimentoValido);
+            
             switch (direcao) {
                 case "W" -> deltaY = -1;
                 case "A" -> deltaX = -1;
                 case "S" -> deltaY = 1;
                 case "D" -> deltaX = 1;
             }
+            
+            movimentoValido = Tabuleiro.tabuleiro().movimentoValido(this.personagem.getX() + deltaX, this.personagem.getY() + deltaY);
 
+            if (!movimentoValido) {
+                System.out.println();
+            }
+            
         }
+        while(!Tabuleiro.tabuleiro().movimentoValido(this.personagem.getX() + deltaX, this.personagem.getY() + deltaY));
 
         this.personagem.mover(deltaX, deltaY);
     }

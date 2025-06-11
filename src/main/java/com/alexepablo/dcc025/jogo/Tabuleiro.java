@@ -31,8 +31,8 @@ public class Tabuleiro {
 
     public void atualizarTabuleiro(Jogador[] jogadores) {
         limparTabuleiro();
-        setPosicao(jogadores[0].getPersonagem().getAparencia(), jogadores[0].getPersonagem().getX(), jogadores[0].getPersonagem().getY());
-        setPosicao(jogadores[1].getPersonagem().getAparencia(), jogadores[1].getPersonagem().getX(), jogadores[1].getPersonagem().getY());
+        setPosicao(jogadores[0].getPersonagem().morto() ? 'X' : jogadores[0].getPersonagem().getAparencia(), jogadores[0].getPersonagem().getX(), jogadores[0].getPersonagem().getY());
+        setPosicao(jogadores[1].getPersonagem().morto() ? 'X' : jogadores[1].getPersonagem().getAparencia(), jogadores[1].getPersonagem().getX(), jogadores[1].getPersonagem().getY());
     }
 
     public boolean ataqueValido(Personagem atacando, Personagem parado)

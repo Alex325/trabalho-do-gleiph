@@ -123,6 +123,10 @@ public class Personagem
     public boolean habilidadeDisponivel() {
         return this.habilidadeDisponivel;
     }
+
+    public boolean morto() {
+        return this.vida == 0;
+    }
     
 }
 
