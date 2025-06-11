@@ -22,17 +22,20 @@ public class EstadoFimDeJogo implements Estado {
 
     @Override
     public void render() {
-        String mensagemFimDeJogo;
+        String mensagemFimDeJogo = "";
 
         if (!forfeit.isEmpty()) {
-            System.out.println("Jogador " + forfeit + " desistiu.");            
+            System.out.println("Jogador " + forfeit + " desistiu.");
+            mensagemFimDeJogo = String.format("Ninguém venceu.", vencedor);
         }
 
-        if (vencedor.compareTo("Inimigo") == 0) {
-            mensagemFimDeJogo = String.format("Que pena. %s venceu.", vencedor);
-        }
-        else {
-            mensagemFimDeJogo = String.format("Parabéns. Jogador %s venceu.", vencedor);
+        if (!vencedor.isEmpty()) {
+            if (vencedor.compareTo("Inimigo") == 0) {
+                mensagemFimDeJogo = String.format("Que pena. %s venceu.", vencedor);
+            }
+            else {
+                mensagemFimDeJogo = String.format("Parabéns. Jogador %s venceu.", vencedor);
+            }
         }
         System.out.println(mensagemFimDeJogo);
     }

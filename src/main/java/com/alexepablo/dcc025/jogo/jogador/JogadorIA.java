@@ -22,11 +22,15 @@ public class JogadorIA extends Jogador {
 
     @Override
     public boolean jogar(Jogador outro, int turno) {
-        System.out.println("jogando... " + this.getClass().getName());
+        System.out.println("Inimigo vai jogar");
         
+        Teclado.esperarInput();
+
         Acao acao = receberAcao(outro, turno);
 
-        System.out.println("Bot vai " + acao); 
+        Teclado.limparLinha(2);
+
+        System.out.println("Inimigo vai " + acaoToString(acao)); 
         executarAcao(acao, outro.getPersonagem());
 
         Teclado.esperarInput();
@@ -36,18 +40,36 @@ public class JogadorIA extends Jogador {
 
     }
 
+    private String acaoToString(Acao acao) {
+        String acaoString = "";
+
+        switch (acao) {
+            case Acao.atacar -> acaoString = "atacar";
+            
+            case Acao.defender -> acaoString = "defender";
+
+            case Acao.aproximar -> acaoString = "se aproximar";
+
+            case Acao.fugir -> acaoString = "fugir";
+
+            case Acao.habilidade -> acaoString = "usar habilidade";
+            
+        }
+
+        return acaoString;
+
+    }
+
     private Acao receberAcao(Jogador outro, int turno)
     {
            int chance = 0;
 
            
-           switch (outro.getPersonagem().getClasse()) {
+           switch (this.personagem.getClasse()) {
                case "Mago" ->  {
                 
-                if (turno % 3 == 1 && turno != 1) {
-                    System.out.println("Turno: " + turno);
+                if (turno % 3 == 1 && turno != 1)
                     return Acao.habilidade;
-                }
 
                 if (Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))
                     return Acao.atacar;

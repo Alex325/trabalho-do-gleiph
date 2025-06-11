@@ -139,12 +139,10 @@ public class EstadoTelaInicial implements Estado {
 
         int[] xEy = Aleatorio.gerarPosicaoDistinta(outroXeY);
 
-        /*switch (classe) {
+        switch (classe) {
             case 0 -> jogadores[1] = new JogadorIA(nome, new Guerreiro(xEy[0], xEy[1]), "Inimigo");
             case 1 -> jogadores[1] = new JogadorIA(nome, new Mago(xEy[0], xEy[1]), "Inimigo");
             case 2 -> jogadores[1] = new JogadorIA(nome, new Arqueiro(xEy[0], xEy[1]), "Inimigo");
-        }*/
-
-        jogadores[1] = new JogadorIA(nome, new Mago(xEy[0], xEy[1]), "Inimigo");
+        }
     }
 }
