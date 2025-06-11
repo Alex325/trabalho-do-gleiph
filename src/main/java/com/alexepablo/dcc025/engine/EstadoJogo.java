@@ -10,36 +10,49 @@ public class EstadoJogo implements Estado {
 
     private int turno;
     private final Jogador[] jogadores;
+    private Jogador jogandoAgora;
     private Jogador proximoJogador;
 
     public EstadoJogo(Jogador[] jogadores) {
         turno = 0;
-        tabuleiro = new Tabuleiro();
+        tabuleiro = Tabuleiro.tabuleiro();
         this.jogadores = jogadores;
         
+        prepararPrimeiroTurno();
+    }
+    
+    private void prepararPrimeiroTurno() {
         tabuleiro.atualizarTabuleiro(this.jogadores);
-        proximoJogador = jogadores[turno];
+
+        jogandoAgora = jogadores[turno];
+        proximoJogador = jogadores[turno + 1];
+
+        tabuleiro.printTabuleiro();
+        jogandoAgora.printStatus();
     }
 
     @Override
     public void run() {
         render();
         tick();
+        Teclado.esperarInput();
     }
     @Override
     public void render() {
         tabuleiro.printTabuleiro();
+        jogandoAgora.printStatus();
     }
+
     @Override
     public void tick() {
-        proximoJogador.jogar();
+        jogandoAgora.jogar(proximoJogador);
         tabuleiro.atualizarTabuleiro(jogadores);
         avancarTurno();
-        Teclado.esperarInput();
     }
 
     private void avancarTurno() {
         turno++;
-        proximoJogador = jogadores[turno % 2];
+        jogandoAgora = jogadores[turno % 2];
+        proximoJogador = jogadores[(turno + 1) % 2];
     }
 }

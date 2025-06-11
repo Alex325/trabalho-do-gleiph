@@ -11,6 +11,8 @@ public class Personagem
     protected int ataque;
     protected int alcance;
 
+    protected boolean habilidadeDisponivel;
+
     protected int x;
     protected int y;
 
@@ -24,6 +26,7 @@ public class Personagem
         this.defesaInicial = defesaInicial;
         this.defesa = this.defesaInicial;
         this.vida = 100;
+        this.habilidadeDisponivel = true;
     }
     
     public void atacar(Personagem alvo)
@@ -38,18 +41,8 @@ public class Personagem
     
     public void mover(int deltaX, int deltaY)
     {
-        x = x + deltaX;
-        y = y + deltaY;
-    }
-    
-    public void setX(int x)
-    {
-        this.x = x;
-    }
-    
-    public void setY(int y)
-    {
-        this.y = y;
+        this.x += deltaX;
+        this.y += deltaY;
     }
     
     public void setDefesa(int defesa)
@@ -59,12 +52,12 @@ public class Personagem
     
     public int getX()
     {
-        return y;
+        return x;
     }
     
     public int getY()
     {
-        return x;
+        return y;
     }
     
     public void setVida(int vida)
@@ -106,17 +99,30 @@ public class Personagem
         return this.classe;
     }
 
+    public int getDefesa()
+    {
+        return this.defesa;
+    }
+
+    public final int getDefesaInicial()
+    {
+        return this.defesaInicial;
+    }
+
     public void receberDano(int dano)
     {
+        int danoReal = Math.max(0, dano - defesa);
         int defesaPosAtaque = Math.max(0,defesa - dano);
         defesa = defesaPosAtaque;
-        int danoReal = Math.max(0, dano - defesa);
         vida = vida - danoReal;
     }
 
     public void habilidadeEspecial() {
     }
  
+    public boolean habilidadeDisponivel() {
+        return this.habilidadeDisponivel;
+    }
     
 }
 

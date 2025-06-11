@@ -4,12 +4,12 @@ import com.alexepablo.dcc025.jogo.personagem.Personagem;
 
 public class JogadorIA extends Jogador {
 
-    public JogadorIA(String nome, Personagem personagem) {
-        super(nome, personagem);
+    public JogadorIA(String nome, Personagem personagem, String tipo) {
+        super(nome, personagem, tipo);
     }
  
     @Override
-    public void jogar() {
+    public void jogar(Jogador outro) {
         System.out.println("jogando... " + this.getClass().getName());
     }
     

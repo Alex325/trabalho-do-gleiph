@@ -10,7 +10,7 @@
         <maven.compiler.release>21</maven.compiler.release>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>com.alex.dcc025.trabalho1dcc025.Trabalho1DCC025</exec.mainClass>
+        <exec.mainClass>com.alexepablo.dcc025.trabalho1dcc025.Trabalho1DCC025</exec.mainClass>
     </properties>
     <build>
         <pluginManagement>
@@ -27,7 +27,7 @@
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                    <mainClass>com.alex.dcc025.trabalho1dcc025.Trabalho1DCC025</mainClass>
+                                    <mainClass>com.alexepablo.dcc025.trabalho1dcc025.Trabalho1DCC025</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

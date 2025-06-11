@@ -26,8 +26,8 @@ public class EstadoFimDeJogo implements Estado {
         String opcao = Teclado.lerOpcaoSimNao();
 
         switch (opcao) {
-            case "s" -> Maquina.maquina().transition(new EstadoTelaInicial());
-            case "n" -> Maquina.maquina().setFimDeJogo(true);
+            case "S" -> Maquina.maquina().transition(new EstadoTelaInicial());
+            case "N" -> Maquina.maquina().setFimDeJogo(true);
         }
         
     }

@@ -27,6 +27,8 @@ public class EstadoTelaInicial implements Estado {
 
     @Override
     public void tick() {
+        Tela.limparTela();
+        
         String modo = Teclado.lerModo();
 
         Jogador[] jogadores = new Jogador[2];
@@ -63,9 +65,9 @@ public class EstadoTelaInicial implements Estado {
         int[] xEy = Aleatorio.gerarPosicao();
 
         switch (classe) {
-            case "G" -> jogadores[0] = new JogadorHumano(nome, new Guerreiro(xEy[0], xEy[1]));
-            case "M" -> jogadores[0] = new JogadorHumano(nome, new Mago(xEy[0], xEy[1]));
-            case "A" -> jogadores[0] = new JogadorHumano(nome, new Arqueiro(xEy[0], xEy[1]));
+            case "G" -> jogadores[0] = new JogadorHumano(nome, new Guerreiro(xEy[0], xEy[1]), "1");
+            case "M" -> jogadores[0] = new JogadorHumano(nome, new Mago(xEy[0], xEy[1]), "1");
+            case "A" -> jogadores[0] = new JogadorHumano(nome, new Arqueiro(xEy[0], xEy[1]), "1");
         }
         
     }
@@ -82,9 +84,9 @@ public class EstadoTelaInicial implements Estado {
 
 
         switch (classe) {
-            case "G" -> jogadores[1] = new JogadorHumano(nome, new Guerreiro(xEy[0], xEy[1]));
-            case "M" -> jogadores[1] = new JogadorHumano(nome, new Mago(xEy[0], xEy[1]));
-            case "A" -> jogadores[1] = new JogadorHumano(nome, new Arqueiro(xEy[0], xEy[1]));
+            case "G" -> jogadores[1] = new JogadorHumano(nome, new Guerreiro(xEy[0], xEy[1]), "2");
+            case "M" -> jogadores[1] = new JogadorHumano(nome, new Mago(xEy[0], xEy[1]), "2");
+            case "A" -> jogadores[1] = new JogadorHumano(nome, new Arqueiro(xEy[0], xEy[1]), "2");
         }
     }
 
@@ -138,9 +140,9 @@ public class EstadoTelaInicial implements Estado {
         int[] xEy = Aleatorio.gerarPosicaoDistinta(outroXeY);
 
         switch (classe) {
-            case 0 -> jogadores[1] = new JogadorIA(nome, new Guerreiro(xEy[0], xEy[1]));
-            case 1 -> jogadores[1] = new JogadorIA(nome, new Mago(xEy[0], xEy[1]));
-            case 2 -> jogadores[1] = new JogadorIA(nome, new Arqueiro(xEy[0], xEy[1]));
+            case 0 -> jogadores[1] = new JogadorIA(nome, new Guerreiro(xEy[0], xEy[1]), "Inimigo");
+            case 1 -> jogadores[1] = new JogadorIA(nome, new Mago(xEy[0], xEy[1]), "Inimigo");
+            case 2 -> jogadores[1] = new JogadorIA(nome, new Arqueiro(xEy[0], xEy[1]), "Inimigo");
         }
     }
 }

@@ -4,17 +4,25 @@ import com.alexepablo.dcc025.jogo.jogador.Jogador;
 import com.alexepablo.dcc025.jogo.personagem.Personagem;
 
 public class Tabuleiro {
-    private char[] tabuleiro = new char[10*10];
+    private char[] matrizTabuleiro = new char[10*10];
 
+    private static Tabuleiro tabuleiro;
 
-    public Tabuleiro() {
-        limparTabuleiro();
+    public static Tabuleiro tabuleiro() {
+        if (tabuleiro != null) return tabuleiro;
+        tabuleiro = new Tabuleiro();
+        return tabuleiro;
     }
 
     public void printTabuleiro() {
+
+        System.out.println("  0 1 2 3 4 5 6 7 8 9");
+
         for (int i = 0; i < 10; i++) {
+            System.out.print(i + " ");
+
             for (int j = 0; j < 10; j++) {
-                System.out.print(tabuleiro[10*i + j] + " ");
+                System.out.print(matrizTabuleiro[10*i + j] + " ");
             }
 
             System.out.print("\n");
@@ -27,14 +35,13 @@ public class Tabuleiro {
         setPosicao(jogadores[1].getPersonagem().getAparencia(), jogadores[1].getPersonagem().getX(), jogadores[1].getPersonagem().getY());
     }
 
-    public boolean validarAtaque(Personagem atacando, Personagem parado)
+    public boolean ataqueValido(Personagem atacando, Personagem parado)
     {
         return atacando.getAlcance() >= distancia(atacando, parado);
-         
     }
 
     public boolean movimentoValido(int x, int y) {
-        return posicaoLivre(x, y) && dentroDoTabuleiro(x, y);
+        return dentroDoTabuleiro(x, y) && posicaoLivre(x, y);
     }
 
     public boolean posicaoLivre(int x, int y) {
@@ -58,11 +65,11 @@ public class Tabuleiro {
     }
 
     private char getPosicao(int x, int y) {
-        return tabuleiro[10*y + x];
+        return matrizTabuleiro[10*y + x];
     }
 
     private void setPosicao(char valor, int x, int y) {
-        tabuleiro[10*y + x] = valor;
+        matrizTabuleiro[10*y + x] = valor;
     }
 
 }
