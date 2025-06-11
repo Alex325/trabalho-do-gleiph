@@ -8,7 +8,7 @@ public class Arqueiro extends Personagem {
     }
     
     @Override
-    public void habilidadeEspecial()
+    public void habilidadeEspecial(Personagem alvo)
     {
         this.alcance++;
     }

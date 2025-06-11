@@ -117,7 +117,7 @@ public class Personagem
         vida = Math.max(0, vida - danoReal);
     }
 
-    public void habilidadeEspecial() {
+    public void habilidadeEspecial(Personagem alvo) {
     }
  
     public boolean habilidadeDisponivel() {

@@ -36,10 +36,10 @@ public class Jogador {
         System.out.println(String.format("%s | PV: %d/100 | Defesa: %d/%d | Ataque: %d | Alcance: %d", nomeCompleto(), this.personagem.getVida(), this.personagem.getDefesa(), this.personagem.getDefesaInicial(), this.personagem.getAtaque(), this.personagem.getAlcance()));
     }
 
-    protected boolean habilidadeEspecial() {
+    protected boolean habilidadeEspecial(Personagem alvo) {
         if (!this.personagem.habilidadeDisponivel()) return false;
 
-        this.personagem.habilidadeEspecial();
+        this.personagem.habilidadeEspecial(alvo);
 
         return true;
     }

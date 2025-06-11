@@ -7,6 +7,7 @@ public class Mago extends Personagem {
         this.alcance = 3;
     }
 
+    @Override
     public void habilidadeEspecial(Personagem alvo)
     {
         int troca = this.vida;

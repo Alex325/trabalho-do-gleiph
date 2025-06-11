@@ -1,12 +1,20 @@
 package com.alexepablo.dcc025.jogo.jogador;
 
-import java.io.StringReader;
 
 import com.alexepablo.dcc025.jogo.Tabuleiro;
 import com.alexepablo.dcc025.jogo.personagem.Personagem;
 import com.alexepablo.dcc025.util.Aleatorio;
+import com.alexepablo.dcc025.util.Teclado;
 
 public class JogadorIA extends Jogador {
+
+    private static enum Acao {
+        atacar,
+        defender,
+        habilidade,
+        aproximar,
+        fugir
+    }
 
     public JogadorIA(String nome, Personagem personagem, String tipo) {
         super(nome, personagem, tipo);
@@ -16,99 +24,116 @@ public class JogadorIA extends Jogador {
     public boolean jogar(Jogador outro, int turno) {
         System.out.println("jogando... " + this.getClass().getName());
         
-        String acao = receberAcao(outro, turno);
-        System.out.println("Bot vai" + acao); 
+        Acao acao = receberAcao(outro, turno);
+
+        System.out.println("Bot vai " + acao); 
         executarAcao(acao, outro.getPersonagem());
+
+        Teclado.esperarInput();
 
         return false;
 
 
     }
 
-    private String receberAcao(Jogador outro, int turno)
+    private Acao receberAcao(Jogador outro, int turno)
     {
            int chance = 0;
-           switch (outro.getClasse()) {
-            case "Mago" -> {
+
+           
+           switch (outro.getPersonagem().getClasse()) {
+               case "Mago" ->  {
                 
-                if(turno%3 == 1 && turno != 1)
-                    return "usar habilidade";
-                if(Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))
-                    return "atacar o oponente";
-                if(Tabuleiro.tabuleiro().ataqueValido(outro.getPersonagem(), this.personagem))    
+                if (turno % 3 == 1 && turno != 1) {
+                    System.out.println("Turno: " + turno);
+                    return Acao.habilidade;
+                }
+
+                if (Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))
+                    return Acao.atacar;
+
+                if (Tabuleiro.tabuleiro().ataqueValido(outro.getPersonagem(), this.personagem))    
                 {
-                    if(this.personagem.getVida() <= 30)
+                    if (this.personagem.getVida() <= 30)
                         chance = Aleatorio.numeroAleatorio(2);
-                    if(chance%2 == 0)
-                        return "se mover para perto do oponente";
-                    return "se defender";   
+
+                    if (chance % 2 == 0)
+                        return Acao.aproximar;
+
+                    return Acao.defender;   
                 }
                 
                 chance = Aleatorio.numeroAleatorio(2);
 
-                if(chance%2 == 0)
-                    return "se mover para perto do oponente";
-                return "se mover para longe do oponente";     
+                if (chance % 2 == 0)
+                    return Acao.aproximar;
+                return Acao.fugir;     
 
             }
-            case "Arqueiro" ->{
+            case "Arqueiro" -> {
 
-                if(turno%2 == 0 && Tabuleiro.tabuleiro().ataqueValido(outro.getPersonagem(), this.personagem))
+                if (turno % 2 == 0 && Tabuleiro.tabuleiro().ataqueValido(outro.getPersonagem(), this.personagem))
                 {
                     chance = Aleatorio.numeroAleatorio(2);
-                    if(chance%2 == 0)
-                        return "se defender";
-                    return "se mover para longe do oponente";    
+                    if (chance % 2 == 0)
+                        return Acao.defender;
+                    return Acao.fugir;    
 
                 }
 
-                if(Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))
-                    return "atacar o oponente";
+                if (Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))
+                    return Acao.atacar;
                 else
-                    return "usar habilidade";    
+                    return Acao.habilidade;    
+            }
+            case "Guerreiro" -> {
+                if (turno == 1)
+                    return Acao.habilidade;
 
-            }
-            case "Guerreiro"->{
-                if(turno == 1)
-                    return "usar habilidade";
-                if(Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))  
-                    return "atacar o oponente";
-                if(this.personagem.getVida() <= 30)
+                if (Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))  
+                    return Acao.atacar;
+
+                if (this.personagem.getVida() <= 30)
                    chance = Aleatorio.numeroAleatorio(2);
-                if(chance%2 == 0)
-                   return "se mover para perto do oponente";
-                return "se defender";     
+
+                if (chance % 2 == 0)
+                   return Acao.aproximar;
+
+                return Acao.defender;     
             }
+        }
+
+        return Acao.defender;
     }
 
-    private void executarAcao(String acao, Personagem outro)
+    private void executarAcao(Acao acao, Personagem outro)
     {
 
         int deltaX, deltaY;
         deltaX = deltaY = 0;
             switch (acao) {
-                case "atacar o oponente" ->{
+                case Acao.atacar -> {
                     this.personagem.atacar(outro);
 
                 }
                 
-                case "se defender" ->{
+                case Acao.defender -> {
                     this.defender();
 
                 }
 
-                case "se mover para perto do oponente"->{
+                case Acao.aproximar-> {
 
-                    if(Math.abs(this.personagem.getX() - outro.getX()) > Math.abs(this.personagem.getY() - outro.getY()) )
+                    if (Math.abs(this.personagem.getX() - outro.getX()) > Math.abs(this.personagem.getY() - outro.getY()) )
                         deltaX = movimentoEixoX(outro);
                     else
                         deltaY = movimentoEixoY(outro);
                     this.personagem.mover(deltaX, deltaY);
                 }
 
-                case "se mover para longe do oponente" ->{ 
+                case Acao.fugir -> { 
 
-                    if(Math.abs(this.personagem.getX() - outro.getX()) > Math.abs(this.personagem.getY() - outro.getY()) )
+                    if (Math.abs(this.personagem.getX() - outro.getX()) > Math.abs(this.personagem.getY() - outro.getY()) )
                        deltaX = -movimentoEixoX(outro);
                     else
                         deltaY = -movimentoEixoY(outro);
@@ -116,12 +141,9 @@ public class JogadorIA extends Jogador {
 
                 }
 
-                case "usar habilidade" ->{
-                    this.personagem.habilidadeEspecial();
-
+                case Acao.habilidade -> {
+                    this.personagem.habilidadeEspecial(outro);
                 }
-                default:
-                return;
     
             }
 
@@ -132,7 +154,7 @@ public class JogadorIA extends Jogador {
 
     private int movimentoEixoX(Personagem outro)
     {
-         if(this.personagem.getX() > outro.getX() )
+         if (this.personagem.getX() > outro.getX() )
                             return -1;
                        else 
                             return 1;
@@ -140,7 +162,7 @@ public class JogadorIA extends Jogador {
 
     private int movimentoEixoY(Personagem outro)
     {
-         if(this.personagem.getY() > outro.getY() )
+         if (this.personagem.getY() > outro.getY() )
                             return -1;
                        else 
                             return 1;

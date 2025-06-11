@@ -10,7 +10,7 @@ public class Guerreiro extends Personagem {
     }
 
     @Override
-    public void habilidadeEspecial()
+    public void habilidadeEspecial(Personagem alvo)
     {
         this.ataque *= 2;
         this.habilidadeDisponivel = false;        

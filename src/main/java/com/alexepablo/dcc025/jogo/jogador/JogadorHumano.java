@@ -31,7 +31,7 @@ public class JogadorHumano extends Jogador {
             }
             case "D" -> { this.defender(); }
             case "E" -> {
-                if (this.habilidadeEspecial()) break;
+                if (this.habilidadeEspecial(outro.getPersonagem())) break;
 
                 Teclado.limparLinha(1);
                 System.out.println("Habilidade indisponível. Tenta outra ação.");
