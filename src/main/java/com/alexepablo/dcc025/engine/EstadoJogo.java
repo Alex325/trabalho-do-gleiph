@@ -46,6 +46,13 @@ public class EstadoJogo implements Estado {
     @Override
     public void tick() {
         jogandoAgora.jogar(proximoJogador);
+
+        String vencedor = encerrarJogo(jogadores);
+
+        if (!vencedor.isEmpty()) {
+            Maquina.maquina().transition(new EstadoFimDeJogo(vencedor));
+        }
+
         tabuleiro.atualizarTabuleiro(jogadores);
         avancarTurno();
     }
@@ -54,5 +61,12 @@ public class EstadoJogo implements Estado {
         turno++;
         jogandoAgora = jogadores[turno % 2];
         proximoJogador = jogadores[(turno + 1) % 2];
+    }
+
+    private String encerrarJogo(Jogador[] jogadores) {
+        for (Jogador jogador : jogadores) {
+            if (jogador.getPersonagem().getVida() == 0) return jogador.getTipo();
+        }
+        return "";
     }
 }

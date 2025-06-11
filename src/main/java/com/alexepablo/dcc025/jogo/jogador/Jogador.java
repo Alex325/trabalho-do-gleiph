@@ -27,6 +27,10 @@ public class Jogador {
     public Personagem getPersonagem() {
         return this.personagem;
     }
+
+    public String getTipo() {
+        return this.tipo;
+    }
     
     public void printStatus() {
         System.out.println(String.format("Jogador %s | Posição (%d, %d)", this.tipo, this.personagem.getX(), this.personagem.getY()));

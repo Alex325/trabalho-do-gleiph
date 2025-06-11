@@ -114,7 +114,7 @@ public class Personagem
         int danoReal = Math.max(0, dano - defesa);
         int defesaPosAtaque = Math.max(0,defesa - dano);
         defesa = defesaPosAtaque;
-        vida = vida - danoReal;
+        vida = Math.max(0, vida - danoReal);
     }
 
     public void habilidadeEspecial() {

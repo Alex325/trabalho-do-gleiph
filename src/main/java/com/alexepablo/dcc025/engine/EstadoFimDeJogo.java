@@ -4,10 +4,10 @@ import com.alexepablo.dcc025.util.Teclado;
 
 public class EstadoFimDeJogo implements Estado {
 
-    private final boolean vitoria;
+    private final String vencedor;
 
-    public EstadoFimDeJogo(boolean vitoria) {
-        this.vitoria = vitoria;
+    public EstadoFimDeJogo(String vencedor) {
+        this.vencedor = vencedor;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class EstadoFimDeJogo implements Estado {
 
     @Override
     public void render() {
-        System.out.println("Parabéns! Você " + (vitoria ? "venceu" : "perdeu") + ".");
+        System.out.println("Parabéns! Você " + (vencedor.isEmpty() ? "venceu" : "perdeu") + ".");
     }
 
     @Override
