@@ -40,6 +40,8 @@ public class EstadoTelaInicial implements Estado {
             case "2" -> montarJogadorEBot(jogadores);
         }
 
+        if (checkEasterEgg(jogadores)) return;
+
         Maquina.maquina().transition(new EstadoJogo(jogadores));
     }
 
@@ -56,11 +58,14 @@ public class EstadoTelaInicial implements Estado {
         montarBot(jogadores);
     }
 
-    private void checkEasterEgg(Jogador[] jogadores) {
+    private boolean checkEasterEgg(Jogador[] jogadores) {
         if(jogadores[0].getNome().equalsIgnoreCase("GLEIPH"))
         {
-            Maquina.maquina().transition(new EstadoFimDeJogo(jogadores[0].getTipo(), ""));
+            (new EstadoFimDeJogo(jogadores[0].getTipo(), "")).render();
+            Maquina.maquina().setFimDeJogo(true);
+            return true;
         }
+        return false;
     }
 
     private void montarJogadorUm(Jogador[] jogadores) {
