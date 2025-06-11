@@ -45,11 +45,6 @@ public class Personagem
         this.y += deltaY;
     }
     
-    public void setDefesa(int defesa)
-    {
-        this.defesa = defesa;
-    }
-    
     public int getX()
     {
         return x;
@@ -70,18 +65,9 @@ public class Personagem
         return this.vida;
     }
     
-    public void setAlcance(int alcance)
-    {
-        this.alcance = alcance;
-    }
     public int getAlcance()
     {
         return this.alcance;
-    }
- 
-    public void setAtaque(int ataque)
-    {
-        this.ataque = ataque;
     }
 
     public int getAtaque()
