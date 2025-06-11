@@ -68,7 +68,7 @@ public class JogadorIA extends Jogador {
            switch (this.personagem.getClasse()) {
                case "Mago" ->  {
                 
-                if (turno % 3 == 1 && turno != 1)
+                if (turno % 2 == 1 && turno != 1)
                     return Acao.habilidade;
 
                 if (Tabuleiro.tabuleiro().ataqueValido(this.personagem, outro.getPersonagem()))

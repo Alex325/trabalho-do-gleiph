@@ -62,6 +62,7 @@ public class EstadoTelaInicial implements Estado {
         String classe = Teclado.lerOpcaoClasse();
         String nome = Teclado.lerNome();
 
+
         int[] xEy = Aleatorio.gerarPosicao();
 
         switch (classe) {
@@ -77,6 +78,7 @@ public class EstadoTelaInicial implements Estado {
 
         String classe = Teclado.lerOpcaoClasse();
         String nome = Teclado.lerNome();
+
 
         int[] outroXeY = { jogadores[0].getPersonagem().getX(), jogadores[0].getPersonagem().getY() };
 

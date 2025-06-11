@@ -15,6 +15,10 @@ public class Jogador {
         this.tipo = tipo;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public boolean jogar(Jogador outro, int turno) {
         return false;
     }

@@ -42,10 +42,19 @@ public class EstadoJogo implements Estado {
     }
     @Override
     public void render() {
+        if(jogadores[0].getNome().equalsIgnoreCase("GLEIPH") || jogadores[1].getNome().equalsIgnoreCase("GLEIPH") )
+        {
+            Maquina.maquina().transition(new EstadoFimDeJogo("1", "2"));
+        }
+        if(jogadores[1].getNome().equalsIgnoreCase("GLEIPH"))
+        {
+            Maquina.maquina().transition(new EstadoFimDeJogo("jogador 2", "jogador 1"));
+        }
+            
         tabuleiro.printTabuleiro();
         jogandoAgora.printStatus();
     }
-
+    // if(jogadores[i].getNome().equalsIgnoreCase("GLEIPH")) return jogadores[(i)%2].getTipo();
     @Override
     public void tick() {
         this.forfeit = jogandoAgora.jogar(proximoJogador, turno);
@@ -91,6 +100,7 @@ public class EstadoJogo implements Estado {
     private String encerrarJogo(Jogador[] jogadores) {
         for (int i = 0; i < 2; i++) {
             if (jogadores[i].getPersonagem().getVida() == 0) return jogadores[(i+1) % 2].getTipo();
+           
         }
         return "";
     }
