@@ -41,20 +41,11 @@ public class EstadoJogo implements Estado {
         tick();
     }
     @Override
-    public void render() {
-        if(jogadores[0].getNome().equalsIgnoreCase("GLEIPH") || jogadores[1].getNome().equalsIgnoreCase("GLEIPH") )
-        {
-            Maquina.maquina().transition(new EstadoFimDeJogo("1", "2"));
-        }
-        if(jogadores[1].getNome().equalsIgnoreCase("GLEIPH"))
-        {
-            Maquina.maquina().transition(new EstadoFimDeJogo("jogador 2", "jogador 1"));
-        }
-            
+    public void render() {     
         tabuleiro.printTabuleiro();
         jogandoAgora.printStatus();
     }
-    // if(jogadores[i].getNome().equalsIgnoreCase("GLEIPH")) return jogadores[(i)%2].getTipo();
+
     @Override
     public void tick() {
         this.forfeit = jogandoAgora.jogar(proximoJogador, turno);

@@ -51,8 +51,16 @@ public class EstadoTelaInicial implements Estado {
 
     private void montarJogadorEBot(Jogador[] jogadores) {
         montarJogadorUm(jogadores);
+        checkEasterEgg(jogadores);
         Tela.limparTela();
         montarBot(jogadores);
+    }
+
+    private void checkEasterEgg(Jogador[] jogadores) {
+        if(jogadores[0].getNome().equalsIgnoreCase("GLEIPH"))
+        {
+            Maquina.maquina().transition(new EstadoFimDeJogo(jogadores[0].getTipo(), ""));
+        }
     }
 
     private void montarJogadorUm(Jogador[] jogadores) {
