@@ -151,15 +151,26 @@ public class JogadorIA extends Jogador {
                     else
                         deltaY = movimentoEixoY(outro);
                     this.personagem.mover(deltaX, deltaY);
+                    
+                    if(Tabuleiro.tabuleiro().movimentoValido(this.personagem.getX() + deltaX, this.personagem.getY()+deltaY))
+                        this.personagem.mover(deltaX, deltaY); 
+                    else
+                        this.personagem.atacar(outro);
                 }
 
                 case Acao.fugir -> { 
 
                     if (Math.abs(this.personagem.getX() - outro.getX()) > Math.abs(this.personagem.getY() - outro.getY()) )
-                       deltaX = -movimentoEixoX(outro);
+                        deltaX = -movimentoEixoX(outro);
                     else
                         deltaY = -movimentoEixoY(outro);
-                    this.personagem.mover(deltaX, deltaY); 
+                    
+                    
+                    if(Tabuleiro.tabuleiro().movimentoValido(this.personagem.getX() + deltaX, this.personagem.getY()+deltaY))
+                        this.personagem.mover(deltaX, deltaY); 
+                    else
+                        this.defender();
+
 
                 }
 
